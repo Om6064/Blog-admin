@@ -1,0 +1,44 @@
+<nav class="fixed top-0 z-30 w-full bg-white border-b border-gray-300">
+  <div class="flex items-center justify-between px-6 py-4">
+
+    <!-- Left -->
+    <div class="flex items-center gap-4">
+
+      <!-- Mobile Sidebar Button -->
+      <button
+        id="toggleSidebarMobile"
+        class="lg:hidden text-gray-700 border border-gray-300 px-3 py-1 text-sm rounded hover:bg-gray-100"
+      >
+        Menu
+      </button>
+
+      <!-- Logo -->
+      <a href="/" class="flex items-center gap-2">
+        <img src="/assets/images/logo.svg" class="h-7" alt="Logo">
+        <span class="text-lg font-semibold text-gray-900"> Admin
+        </span>
+      </a>
+
+    </div>
+
+    <!-- Right -->
+    <div class="hidden md:flex items-center gap-6">
+
+      <!-- Search -->
+      <form>
+        <input
+          type="text"
+          placeholder="Search records"
+          class="border border-gray-300 px-3 py-1.5 text-sm rounded focus:outline-none focus:border-gray-700"
+        />
+      </form>
+
+      <!-- Role -->
+      <span class="text-sm text-gray-600">
+        Logged in as <strong>Admin</strong>
+      </span>
+
+    </div>
+
+  </div>
+</nav>
