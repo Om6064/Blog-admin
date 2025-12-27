@@ -1,0 +1,35 @@
+ <% blogs.forEach(blog=> { %>
+
+          <div class="bg-white rounded-lg shadow hover:shadow-lg transition duration-300 overflow-hidden">
+
+            <!-- Blog Image -->
+            <img src="/<%= blog.blogImage %>" alt="<%= blog.blogTitle %>" class="w-full h-48 object-cover" />
+
+            <!-- Blog Content -->
+            <div class="p-4">
+
+              <!-- Title -->
+              <h3 class="text-xl font-bold text-gray-800">
+                <%= blog.blogTitle %>
+              </h3>
+
+              <!-- Tags -->
+              <p class="text-sm text-blue-600 mt-1">
+                #<%= blog.blogTags %>
+              </p>
+
+              <!-- Description (Short Preview) -->
+              <p class="text-gray-600 mt-2">
+                <%= blog.blogDescription.substring(0, 80) %>...
+              </p>
+
+              <!-- Read More -->
+              <a href="/admin/quick-view/<%= blog._id %>"
+                class="text-blue-600 hover:underline mt-3 inline-block text-sm font-medium">
+                Read More →
+              </a>
+
+            </div>
+          </div>
+
+          <% }) %>

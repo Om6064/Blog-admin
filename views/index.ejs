@@ -15,7 +15,7 @@
           <p class="text-slate-600">Manage all published content</p>
         </div>
 
-        <a href="/add-blog"
+        <a href="/admin/add-blog"
           class="rounded-lg bg-slate-900 px-5 py-2.5 text-sm font-medium text-white hover:bg-slate-800">
           + New Post
         </a>
@@ -29,7 +29,7 @@
         <p class="text-slate-600 mb-6">
           Create your first post to start managing content.
         </p>
-        <a href="/add-blog"
+        <a href="/admin/add-blog"
           class="inline-flex items-center rounded-lg bg-slate-900 px-6 py-3 text-sm font-medium text-white">
           Create first post
         </a>
@@ -106,17 +106,17 @@
                 <td class="px-6 py-4 text-right">
                   <div class="inline-flex items-center gap-2">
 
-                    <a href="/quick-view/<%= data.id %>"
+                    <a href="/admin/quick-view/<%= data.id %>"
                       class="px-3 py-1.5 text-sm rounded-md bg-slate-100 text-slate-700 hover:bg-slate-200">
                       View
                     </a>
 
-                    <a href="/edit-form/<%= data.id %>"
+                    <a href="/admin/edit-form/<%= data.id %>"
                       class="px-3 py-1.5 text-sm rounded-md bg-indigo-50 text-indigo-600 hover:bg-indigo-100">
                       Edit
                     </a>
 
-                    <a href="/delete-blog/<%= data.id %>"
+                    <a href="/admin/delete-blog/<%= data.id %>"
                       class="px-3 py-1.5 text-sm rounded-md bg-red-50 text-red-600 hover:bg-red-100">
                       Delete
                     </a>

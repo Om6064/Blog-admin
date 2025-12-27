@@ -30,7 +30,7 @@ exports.loginUser = async (req, res) => {
             maxAge: 24 * 60 * 60 * 1000,
             httpOnly: true
         })
-        res.redirect("/");
+        res.redirect("/admin");
     } catch (error) {
         console.log(error);
     }
@@ -38,5 +38,5 @@ exports.loginUser = async (req, res) => {
 
 exports.logOut = (req, res) => {
     res.clearCookie("check");
-    res.redirect("/auth");
+    res.redirect("/");
 }

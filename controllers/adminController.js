@@ -21,7 +21,7 @@ exports.addBlog = async (req, res) => {
         const { path } = req.file;
         const blogData = new BlogModel({ ...req.body, blogImage: path });
         await blogData.save();
-        res.redirect("/");
+        res.redirect("/admin");
     } catch (error) {
         console.log(error)
     }
@@ -36,7 +36,7 @@ exports.deleteBlog = async (req, res) => {
         let imgPath = path.join(__dirname, "..", data?.blogImage);
         fs.unlink(imgPath, err => err && console.log(err));
         await BlogModel.findByIdAndDelete(id);
-        res.redirect("/");
+        res.redirect("/admin");
     } catch (error) {
         console.log(error)
     }
@@ -64,7 +64,7 @@ exports.editBlog = async (req, res) => {
             updatedData.blogImage = req.file.path;
         }
         await BlogModel.findByIdAndUpdate(id, updatedData);
-        res.redirect("/");
+        res.redirect("/admin");
     } catch (error) {
         console.log(error)
     }

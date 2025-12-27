@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>User – Blog Page</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100">
+
+  <!-- Header -->
+  <header class="bg-blue-600 text-white p-4 flex justify-between items-center">
+    <h1 class="text-xl font-semibold">User Panel</h1>
+
+    <!-- Button to Admin -->
+    <a href="/admin" class="bg-white text-blue-600 px-4 py-2 rounded shadow font-medium">
+      Go to Admin
+    </a>
+  </header>
+
+  <!-- Main Content -->
+  <main class="p-6">
+
+    <div class="mb-6">
+      <h2 class="text-2xl font-bold text-gray-800">Latest Blogs</h2>
+      <p class="text-gray-600">Read articles from our database.</p>
+    </div>
+
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <% blogs.forEach(blog=> { %>
+
+          <div class="bg-white rounded-lg shadow hover:shadow-lg transition duration-300 overflow-hidden">
+
+            <!-- Blog Image -->
+            <img src="/<%= blog.blogImage %>" alt="<%= blog.blogTitle %>" class="w-full h-48 object-cover" />
+
+            <!-- Blog Content -->
+            <div class="p-4">
+
+              <!-- Title -->
+              <h3 class="text-xl font-bold text-gray-800">
+                <%= blog.blogTitle %>
+              </h3>
+
+              <!-- Tags -->
+              <p class="text-sm text-blue-600 mt-1">
+                #<%= blog.blogTags %>
+              </p>
+
+              <!-- Description (Short Preview) -->
+              <p class="text-gray-600 mt-2">
+                <%= blog.blogDescription.substring(0, 80) %>...
+              </p>
+
+              <!-- Read More -->
+              <a href="/admin/quick-view/<%= blog._id %>"
+                class="text-blue-600 hover:underline mt-3 inline-block text-sm font-medium">
+                Read More →
+              </a>
+
+            </div>
+          </div>
+
+          <% }) %>
+
+      </div>
+
+    </div>
+
+  </main>
+
+</body>
+
+</html>
