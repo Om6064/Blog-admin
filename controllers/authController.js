@@ -14,6 +14,7 @@ exports.signUpUser = async (req, res) => {
         res.redirect("/auth");
     } catch (error) {
         console.log(error)
+        res.status(500).send("Signup failed or User already Register");
     }
 }
 
