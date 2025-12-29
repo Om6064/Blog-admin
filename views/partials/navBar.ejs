@@ -5,19 +5,23 @@
     <div class="flex items-center gap-4">
 
       <!-- Mobile Sidebar Button -->
-      <button
-        id="toggleSidebarMobile"
-        class="lg:hidden text-gray-700 border border-gray-300 px-3 py-1 text-sm rounded hover:bg-gray-100"
-      >
+      <button id="toggleSidebarMobile"
+        class="lg:hidden text-gray-700 border border-gray-300 px-3 py-1 text-sm rounded hover:bg-gray-100">
         Menu
       </button>
 
       <!-- Logo -->
-      <a href="/admin" class="flex items-center gap-2">
-        <img src="/assets/images/logo.svg" class="h-7" alt="Logo">
-        <span class="text-lg font-semibold text-gray-900"> Admin
-        </span>
-      </a>
+    
+        <a href="/admin" class="flex items-center gap-3">
+          <svg width="40" height="40" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+            <rect width="48" height="48" rx="12" fill="#111827" />
+            <path d="M14 14h20v4H14zM14 22h20v4H14zM14 30h12v4H14z" fill="#ffffff" />
+          </svg>
+
+          <span class="text-xl font-semibold tracking-tight text-gray-900">
+            Admin<span class="text-gray-400">.</span>
+          </span>
+        </a>
 
     </div>
 
@@ -26,11 +30,8 @@
 
       <!-- Search -->
       <form>
-        <input
-          type="text"
-          placeholder="Search records"
-          class="border border-gray-300 px-3 py-1.5 text-sm rounded focus:outline-none focus:border-gray-700"
-        />
+        <input type="text" placeholder="Search records"
+          class="border border-gray-300 px-3 py-1.5 text-sm rounded focus:outline-none focus:border-gray-700" />
       </form>
 
       <!-- Role -->

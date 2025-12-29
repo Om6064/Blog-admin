@@ -1,21 +1,22 @@
 const BlogModel = require("../models/blogModel.js");
 const fs = require("fs");
 const path = require("path");
-exports.home = async (req, res) => {
+
+const home = async (req, res) => {
     try {
         const data = await BlogModel.find({});
         // console.log(data)
         res.render("index", { blogs: data });
     } catch (error) {
-        console.log(error)
+        console.log(error);
     }
-}
+};
 
-exports.blogForm = (req, res) => {
+const blogForm = (req, res) => {
     res.render("blogForm");
-}
+};
 
-exports.addBlog = async (req, res) => {
+const addBlog = async (req, res) => {
     try {
         // console.log(req.body)
         const { path } = req.file;
@@ -23,12 +24,11 @@ exports.addBlog = async (req, res) => {
         await blogData.save();
         res.redirect("/admin");
     } catch (error) {
-        console.log(error)
+        console.log(error);
     }
+};
 
-}
-
-exports.deleteBlog = async (req, res) => {
+const deleteBlog = async (req, res) => {
     try {
         let { id } = req.params;
         let data = await BlogModel.findById(id);
@@ -38,11 +38,11 @@ exports.deleteBlog = async (req, res) => {
         await BlogModel.findByIdAndDelete(id);
         res.redirect("/admin");
     } catch (error) {
-        console.log(error)
+        console.log(error);
     }
-}
+};
 
-exports.editForm = async (req, res) => {
+const editForm = async (req, res) => {
     try {
         let { id } = req.params;
         let data = await BlogModel.findById(id);
@@ -50,9 +50,9 @@ exports.editForm = async (req, res) => {
     } catch (error) {
         console.log(error);
     }
-}
+};
 
-exports.editBlog = async (req, res) => {
+const editBlog = async (req, res) => {
     try {
         let { id } = req.params;
         let updatedData = req.body;
@@ -66,16 +66,26 @@ exports.editBlog = async (req, res) => {
         await BlogModel.findByIdAndUpdate(id, updatedData);
         res.redirect("/admin");
     } catch (error) {
-        console.log(error)
+        console.log(error);
     }
-}
+};
 
-exports.quickView = async (req, res) => {
+const quickView = async (req, res) => {
     try {
         let { id } = req.params;
         let blog = await BlogModel.findById(id);
-        res.render("quickView", {blog});
+        res.render("quickView", { blog });
     } catch (error) {
-        console.log(error)
+        console.log(error);
     }
-}
+};
+
+module.exports = {
+    home,
+    blogForm,
+    addBlog,
+    deleteBlog,
+    editForm,
+    editBlog,
+    quickView
+};
