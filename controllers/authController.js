@@ -1,50 +1,58 @@
 const UserModel = require("../models/userModel.js");
 
-const getSignUp = (req, res) => {
+// Render signup page
+const renderSignUpPage = (req, res) => {
     res.render("signUp");
 };
 
-const getLogin = (req, res) => {
+// Render login page
+const renderLoginPage = (req, res) => {
     res.render("login");
 };
 
-const signUpUser = async (req, res) => {
+// Register new user
+const registerUser = async (req, res) => {
     try {
         const userData = new UserModel(req.body);
         await userData.save();
         res.redirect("/auth");
     } catch (error) {
         console.log(error);
-        res.status(500).send("Signup failed or User already Register");
+        res.status(500).send("Signup failed or User already registered");
     }
 };
 
-const loginUser = async (req, res) => {
+// Authenticate user
+const authenticateUser = async (req, res) => {
     try {
         const credentials = req.body;
-        const loginUser = await UserModel.findOne(credentials);
-        if (!loginUser) {
-            return res.send("invalid user Name or Password...!");
+        const user = await UserModel.findOne(credentials);
+
+        if (!user) {
+            return res.send("Invalid username or password!");
         }
-        res.cookie("check", loginUser.id, {
+
+        res.cookie("check", user.id, {
             maxAge: 24 * 60 * 60 * 1000,
             httpOnly: true
         });
+
         res.redirect("/admin");
     } catch (error) {
         console.log(error);
     }
 };
 
-const logOut = (req, res) => {
+// Logout user
+const logoutUser = (req, res) => {
     res.clearCookie("check");
     res.redirect("/");
 };
 
 module.exports = {
-    getSignUp,
-    getLogin,
-    signUpUser,
-    loginUser,
-    logOut
+    renderSignUpPage,
+    renderLoginPage,
+    registerUser,
+    authenticateUser,
+    logoutUser
 };

@@ -2,23 +2,24 @@ const BlogModel = require("../models/blogModel.js");
 const fs = require("fs");
 const path = require("path");
 
-const home = async (req, res) => {
+// Home page controller
+const getHomePage = async (req, res) => {
     try {
         const data = await BlogModel.find({});
-        // console.log(data)
         res.render("index", { blogs: data });
     } catch (error) {
         console.log(error);
     }
 };
 
-const blogForm = (req, res) => {
+// Render blog creation form
+const renderBlogForm = (req, res) => {
     res.render("blogForm");
 };
 
-const addBlog = async (req, res) => {
+// Create a new blog
+const createBlog = async (req, res) => {
     try {
-        // console.log(req.body)
         const { path } = req.file;
         const blogData = new BlogModel({ ...req.body, blogImage: path });
         await blogData.save();
@@ -28,13 +29,15 @@ const addBlog = async (req, res) => {
     }
 };
 
-const deleteBlog = async (req, res) => {
+// Delete a blog
+const removeBlog = async (req, res) => {
     try {
         let { id } = req.params;
         let data = await BlogModel.findById(id);
-        console.log(data);
+
         let imgPath = path.join(__dirname, "..", data?.blogImage);
         fs.unlink(imgPath, err => err && console.log(err));
+
         await BlogModel.findByIdAndDelete(id);
         res.redirect("/admin");
     } catch (error) {
@@ -42,7 +45,8 @@ const deleteBlog = async (req, res) => {
     }
 };
 
-const editForm = async (req, res) => {
+// Render edit form
+const renderEditForm = async (req, res) => {
     try {
         let { id } = req.params;
         let data = await BlogModel.findById(id);
@@ -52,10 +56,12 @@ const editForm = async (req, res) => {
     }
 };
 
-const editBlog = async (req, res) => {
+// Update blog
+const updateBlog = async (req, res) => {
     try {
         let { id } = req.params;
         let updatedData = req.body;
+
         if (req.file) {
             let data = await BlogModel.findById(id);
             let imgPath = path.join(__dirname, "..", data?.blogImage);
@@ -63,6 +69,7 @@ const editBlog = async (req, res) => {
 
             updatedData.blogImage = req.file.path;
         }
+
         await BlogModel.findByIdAndUpdate(id, updatedData);
         res.redirect("/admin");
     } catch (error) {
@@ -70,7 +77,8 @@ const editBlog = async (req, res) => {
     }
 };
 
-const quickView = async (req, res) => {
+// Quick view blog
+const renderQuickView = async (req, res) => {
     try {
         let { id } = req.params;
         let blog = await BlogModel.findById(id);
@@ -81,11 +89,11 @@ const quickView = async (req, res) => {
 };
 
 module.exports = {
-    home,
-    blogForm,
-    addBlog,
-    deleteBlog,
-    editForm,
-    editBlog,
-    quickView
+    getHomePage,
+    renderBlogForm,
+    createBlog,
+    removeBlog,
+    renderEditForm,
+    updateBlog,
+    renderQuickView
 };
